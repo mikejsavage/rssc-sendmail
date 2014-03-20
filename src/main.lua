@@ -23,7 +23,7 @@ for article in db( [[
 	local body = ( "Subject: [%s] %s\n\nPosted %s\n%s\n\n%s" ):format(
 		article.feedtitle,
 		article.title,
-		os.date( "%a %w %b, %X", article.timestamp ),
+		os.date( "%a %w %b %Y, %X", article.timestamp ),
 		article.url,
 		article.content
 	)
