@@ -19,8 +19,9 @@ for article in db( [[
 	WHERE articles.unread = 1
 	ORDER BY articles.timestamp DESC
 ]] ) do
-	local cmd = ( "%s -f %q %q" ):format( cfg.sendmail, cfg.from, cfg.to )
-	local body = ( "Subject: [%s] %s\n\nPosted %s\n%s\n\n%s" ):format(
+	local cmd = ( "%s -t -f %q %q" ):format( cfg.sendmail, cfg.from, cfg.to )
+	local body = ( "To: %s\nSubject: [%s] %s\n\nPosted %s\n%s\n\n%s" ):format(
+		cfg.to,
 		article.feedtitle,
 		article.title,
 		os.date( "%a %w %b %Y, %X", article.timestamp ),
