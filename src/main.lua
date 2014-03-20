@@ -22,9 +22,9 @@ for article in db( [[
 	local cmd = ( "%s -f %q %q" ):format( cfg.sendmail, cfg.from, cfg.to )
 	local body = ( "Subject: [%s] %s\n\nPosted %s\n%s\n\n%s" ):format(
 		article.feedtitle,
+		article.title,
 		os.date( "%a %w %b, %X", article.timestamp ),
 		article.url,
-		article.title,
 		article.content
 	)
 
