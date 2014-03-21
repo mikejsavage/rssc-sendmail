@@ -10,7 +10,6 @@ for article in db( [[
 	SELECT
 		articles.title,
 		articles.url,
-		articles.content,
 		articles.timestamp,
 		feeds.title as feedtitle
 	FROM articles
@@ -20,13 +19,12 @@ for article in db( [[
 	ORDER BY articles.timestamp DESC
 ]] ) do
 	local cmd = ( "%s -t -f %q %q" ):format( cfg.sendmail, cfg.from, cfg.to )
-	local body = ( "To: %s\nSubject: [%s] %s\n\nPosted %s\n%s\n\n%s" ):format(
+	local body = ( "To: %s\nSubject: [%s] %s\n\nPosted %s\n%s" ):format(
 		cfg.to,
 		article.feedtitle,
 		article.title,
 		os.date( "%a %w %b %Y, %X", article.timestamp ),
-		article.url,
-		article.content
+		article.url
 	)
 
 	local pipe = assert( io.popen( cmd, "w" ) )
