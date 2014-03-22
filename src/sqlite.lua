@@ -35,7 +35,6 @@ end
 local function addMethods( db )
 	local mt = getmetatable( db )
 	local oldIndex = mt.__index
-	local opened = false
 
 	mt.__call = function( self, query, ... )
 		return stmtIter( self, query, ... )
