@@ -1,5 +1,3 @@
-#! /usr/bin/lua
-
 if not arg[ 1 ] or not arg[ 2 ] then
 	print( arg[ 0 ] .. " <source directory> <path to main>" )
 	os.exit( 1 )

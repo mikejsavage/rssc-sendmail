@@ -4,7 +4,7 @@ TARGET = rssc-sendmail
 all: $(TARGET)
 
 $(TARGET): $(SOURCES)
-	./merge.lua src main.lua > $(TARGET)
+	lua merge.lua src main.lua > $(TARGET)
 	chmod +x $(TARGET)
 
 clean:
