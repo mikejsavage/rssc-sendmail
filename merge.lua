@@ -17,7 +17,7 @@ local function addDir( rel )
 			local attr = lfs.attributes( full )
 
 			if attr.mode == "directory" then
-				addDir( full )
+				addDir( rel .. file .. "/" )
 			elseif file:match( "%.lua$" ) and ( rel ~= "" or file ~= main ) then
 				local f = io.open( full, "r" )
 				local contents = f:read( "*all" )
