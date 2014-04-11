@@ -11,4 +11,4 @@ clean:
 	rm -f $(TARGET)
 
 install:
-	cp rssc-sendmail /usr/bin
+	cp $(TARGET) /usr/bin
