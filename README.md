@@ -20,10 +20,15 @@ Building:
 	$ make
 	$ make install
 
-To run (in this case every 15 minutes and as the `rssc` user), add an
-entry like the following to your crontab:
+To run (in this case every 15 minutes), add an entry like the following
+to your crontab:
 
-	*/15 * * * * rssc rssc && rssc-sendmail
+	*/15 * * * * rssc && rssc-sendmail
+
+If you installed rssc already, you should have an unprivileged user
+named `rssc` which is able to read and modify rssc's database. In the
+interest of security, you should put the above in `rssc`'s crontab and
+not root's.
 
 Configuration
 -------------
