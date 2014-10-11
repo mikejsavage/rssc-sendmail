@@ -8,6 +8,7 @@ local cfg = config.read( "/etc/rssc_sendmail.conf", {
 
 for article in db( [[
 	SELECT
+		articles.id,
 		articles.title,
 		articles.url,
 		articles.timestamp,
@@ -30,8 +31,8 @@ for article in db( [[
 	local pipe = assert( io.popen( cmd, "w" ) )
 	assert( pipe:write( body ) )
 	assert( pipe:close() )
+
+	sqlite.assert( db, db:run( "UPDATE articles SET unread = 0 WHERE id = ?", article.id ) )
 end
 
-assert( db:exec( "UPDATE articles SET unread = 0" ) )
-
-assert( db:close() )
+sqlite.assert( db, db:close() )
