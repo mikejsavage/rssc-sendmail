@@ -9,7 +9,7 @@ unread articles and marks everything read.
 Dependencies
 ------------
 
-lua 5.1, [luafilesystem][2], [lsqlite3][3], [rssc][1]
+lua >= 5.1, [luafilesystem][2], [lsqlite3][3], [rssc][1]
 
 Usage
 -----
