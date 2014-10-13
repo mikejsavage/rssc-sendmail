@@ -1,23 +1,11 @@
 local _M = { }
 
 function _M.read( path, defaults )
-	local conf = defaults
-	local fn
+	local conf = setmetatable( defaults, { __index = { } } )
+	local fn = assert( loadfile( path, "t", conf ) )
 
 	if _VERSION == "Lua 5.1" then
-		fn = assert( loadfile( path ) )
-
-		local env = setmetatable( { }, {
-			__newindex = function( self, key, value )
-				conf[ key ] = value
-			end,
-
-			__index = { },
-		} )
-
-		setfenv( fn, env )
-	else
-		fn = assert( loadfile( path, "t", conf ) )
+		setfenv( fn, conf )
 	end
 
 	local ok, err = pcall( fn )
